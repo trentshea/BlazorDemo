@@ -1,3 +1,66 @@
-﻿@inherits LayoutComponentBase
+﻿@using BlazorDemo.Components
+@inherits LayoutComponentBase
+@inject IDialogService DialogService
+@inject NavigationManager NavigationManager
 
-@Body
+
+<div class="header-fixed-tint-hint"></div>
+<FluentPullToRefresh ShowStaticTip="false" OnRefreshAsync="RefreshApp" DragDistance="96" DragThreshold="64">
+    <ChildContent>
+        <FluentLayout>
+            <FluentHeader Class="safe-area-padding-header">
+                BlazorDemo
+                <FluentSpacer />
+                <FluentButton OnClick="OpenSiteSettingsAsync">
+                    <FluentIcon Value="@(new Icons.Regular.Size20.Settings())" />
+                </FluentButton>
+            </FluentHeader>
+
+            <FluentStack Class="main" Orientation="Orientation.Vertical">
+                <FluentBodyContent Class="body-content safe-area-padding-body-content">
+                    <ChildContent>
+                        <div class="content">
+                            @Body
+                        </div>
+                    </ChildContent>
+                </FluentBodyContent>
+            </FluentStack>
+
+            <FluentFooter Class="safe-area-padding-footer">
+                <div class="footer-gutters">
+                    Placeholder1
+                    <FluentSpacer />
+                    Placeholder2
+                </div>
+            </FluentFooter>
+        </FluentLayout>
+    </ChildContent>
+</FluentPullToRefresh>
+<div class="footer-fixed-tint-hint"></div>
+<FluentDialogProvider />
+
+
+@code {
+    private IDialogReference? _dialog;
+
+    private async Task OpenSiteSettingsAsync()
+    {
+        _dialog = await DialogService.ShowPanelAsync<SiteSettingsPanel>(new DialogParameters()
+        {
+            ShowTitle = true,
+            Title = "Site settings",
+            Alignment = HorizontalAlignment.Right,
+            PrimaryAction = "OK",
+            SecondaryAction = null,
+            ShowDismiss = true
+        });
+
+        DialogResult result = await _dialog.Result;
+    }
+
+    private async Task<bool> RefreshApp()
+    {
+        NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
+        return true;
+    }
+}

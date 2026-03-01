@@ -1,0 +1,12 @@
+@using BlazorDemo.Components
+@implements IDialogContentComponent
+
+
+<div>
+    <FluentDesignTheme @bind-Mode="@Mode" StorageName="theme" />
+
+    <FluentStack Orientation="Orientation.Vertical">
+        <FluentSelect Label="Mode" Width="100%" Items="@(Enum.GetValues<DesignThemeModes>())"
+                      @bind-SelectedOption="@Mode" />
+    </FluentStack>
+</div>

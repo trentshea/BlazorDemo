@@ -1,3 +1,7 @@
+#app {
+    height: 100dvh;
+}
+
 .loading-progress {
     position: absolute;
     display: block;
@@ -9,14 +13,14 @@
 
 .loading-progress circle {
     fill: none;
-    stroke: #e0e0e0;
+    stroke: var(--neutral-layer-1);
     stroke-width: 0.6rem;
     transform-origin: 50% 50%;
     transform: rotate(-90deg);
 }
 
 .loading-progress circle:last-child {
-    stroke: #1b6ec2;
+    stroke: var(--accent-fill-rest);
     stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
     transition: stroke-dasharray 0.05s ease-in-out;
 }

@@ -1,0 +1,76 @@
+.body-content {
+    align-self: stretch;
+    display: flex;
+    flex-grow: 1;
+}
+
+.content {
+    padding: 0.5rem 1.5rem;
+    align-self: stretch !important;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    background: var(--neutral-layer-4);
+}
+
+.footer-fixed-tint-hint {
+    background: var(--neutral-layer-4);
+    position: fixed;
+    bottom: 0;
+    height: 6px;
+    z-index: 999;
+    width: 100%
+}
+
+.footer-gutters {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 100%;
+    margin: 0.5rem 1.5rem;
+    color: var(--neutral-foreground-rest);
+}
+
+/*
+Re: tinting.
+Some colors don't work; for example, on iOS, if you try to use cyan
+or white in portrait it'll be okay, but in landscape it'll not. Seems based
+on how 'bright' the color is. Try forestgreen in light/dark mode in
+portrait or landscape and then try cyan to see behaviour change.
+*/
+.header-fixed-tint-hint {
+    background-color: var(--accent-fill-rest);
+    position: fixed;
+    top: 0;
+    height: 6px;
+    z-index: 999;
+    width: 100%
+}
+
+.main {
+    display: flex;
+    flex-grow: 1;
+    color: var(--neutral-foreground-rest);
+    align-items: stretch !important;
+}
+
+.safe-area-padding-body-content {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}
+
+.safe-area-padding-footer {
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}
+
+.safe-area-padding-header {
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}
